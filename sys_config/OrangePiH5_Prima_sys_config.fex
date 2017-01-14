@@ -3,7 +3,7 @@
 ; 说明： 脚本中的字符串区分大小写，用户可以修改"="后面的数值，但是不要修改前面的字符串
 ; 描述gpio的形式：Port:端口+组内序号<功能分配><内部电阻状态><驱动能力><输出电平状态>
 ;---------------------------------------------------------------------------------------------------------
-; Platform: OrangePi PC2
+; Platform: OrangePi Prima
 
 [product]
 version = "100"
@@ -101,7 +101,7 @@ sdc_d5          = port:PC13<3><1><3><default>
 sdc_d6          = port:PC14<3><1><3><default>
 sdc_d7          = port:PC15<3><1><3><default>
 sdc_emmc_rst    = port:PC16<3><1><3><default>
-sdc_ex_dly_used = 2
+sdc_ex_dly_used = 0
 
 
 [twi_para]
@@ -133,32 +133,8 @@ pll10           = 264
 ;
 ;*****************************************************************************
 [dram_para]
-;dram_clk     = 672
-;dram_type    = 3
-;dram_zq      = 0x3b3b3b
-;dram_odt_en  = 0x1
-;dram_para1   = 283377664
-;dram_para2   = 0x0000
-;dram_mr0     = 6208
-;dram_mr1     = 64
-;dram_mr2     = 24
-;dram_mr3     = 0x2
-;dram_tpr0    = 0x0048A192
-;dram_tpr1    = 0x01c2418d
-;dram_tpr2    = 0x00076051
-;dram_tpr3    = 0x0
-;dram_tpr4    = 0x0000
-;dram_tpr5    = 0x0
-;dram_tpr6    = 0x64
-;dram_tpr7    = 0x0
-;dram_tpr8    = 0x0
-;dram_tpr9    = 0
-;dram_tpr10   = 0x0
-;dram_tpr11   = 0x6aaa0000
-;dram_tpr12   = 0x00007979
-;dram_tpr13   = 0x800800
-
-dram_clk     = 672
+dram_clk     = 624
+;dram_clk     = 480
 dram_type    = 3
 dram_zq      = 0x3b3bf9
 dram_odt_en  = 0x1
@@ -174,14 +150,39 @@ dram_tpr2    = 0x00061043
 dram_tpr3    = 0xB4787896
 dram_tpr4    = 0x0000
 dram_tpr5    = 0x0
-dram_tpr6    = 0x64
+dram_tpr6    = 100
 dram_tpr7    = 0x1e08a1e0
 dram_tpr8    = 0x0
 dram_tpr9    = 0
 dram_tpr10   = 0x2535
-dram_tpr11   = 0x23330000
+dram_tpr11   = 0x68660000
 dram_tpr12   = 0x00008897
 dram_tpr13   = 0x4002910
+
+;dram_clk     = 672
+;dram_type    = 3
+;dram_zq      = 0x3b3bfb
+;dram_odt_en  = 0x1
+;dram_para1   = 285476864
+;dram_para2   = 0x0000
+;dram_mr0     = 7280
+;dram_mr1     = 0x40
+;dram_mr2     = 0x18
+;dram_mr3     = 0
+;dram_tpr0    = 0x0048A192
+;dram_tpr1    = 0x01c2418d
+;dram_tpr2    = 0x76051
+;dram_tpr3    = 0
+;dram_tpr4    = 0x0000
+;dram_tpr5    = 0x0
+;dram_tpr6    = 0x64
+;dram_tpr7    = 0x0
+;dram_tpr8    = 0x0
+;dram_tpr9    = 0
+;dram_tpr10   = 0
+;dram_tpr11   = 0x6aaa0000
+;dram_tpr12   = 0x7979
+;dram_tpr13   = 0x1800801
 ;----------------------------------------------------------------------------------
 ;os life cycle para configuration
 ;----------------------------------------------------------------------------------
@@ -783,7 +784,7 @@ csi0_dev1_act_slave     = 0x18
 ;
 ;--------------------------------------------------------------------------------
 [tvout_para]
-tvout_used          = 
+tvout_used          = 1
 tvout_channel_num   =
 tv_en               =
 
@@ -836,7 +837,7 @@ vdmmc="vcc-sdcvd"
 
 
 [sdc1]
-sdc1_used          = 0
+sdc1_used          = 1
 bus-width	= 4
 sdc1_clk           = port:PG00<2><1><3><default>
 sdc1_cmd           = port:PG01<2><1><3><default>
@@ -927,12 +928,12 @@ smc_sda             =
 [gpio_para]
 compatible		= "allwinner,sunxi-init-gpio"
 gpio_used		= 1
-gpio_num		= 2
-gpio_pin_1		=  port:PL10<1><default><default><0>
-gpio_pin_2		=  port:PA20<1><default><default><1>
+gpio_num		= 0
+;gpio_pin_1		=  port:PL10<1><default><default><0>
+;gpio_pin_2		=  port:PA20<1><default><default><1>
 ;gpio_pin_3		=  port:PA13<1><default><default><1>
-normal_led		= "gpio_pin_1"
-standby_led		= "gpio_pin_2"
+normal_led		=  port:PL10<1><default><default><1>
+standby_led		=  port:PA20<1><default><default><1>
 ;network_led		= "gpio_pin_3"
 
 ;--------------------------------
@@ -953,8 +954,8 @@ usbc0_used          = 1
 usb_port_type       = 2
 usb_detect_type     = 0
 usb_detect_mode     = 0
-usb_id_gpio         = port:PG12<0><1><default><default>
-usb_det_vbus_gpio   = port:PG12<0><1><default><default>
+usb_id_gpio         = port:PA21<0><1><default><default>
+usb_det_vbus_gpio   = port:PA21<0><1><default><default>
 usb_drv_vbus_gpio   = port:PL02<1><0><default><0>
 usb_host_init_state = 1
 usb_regulator_io    = "nocare"
@@ -1049,7 +1050,7 @@ lsm303d                   = 0
 ;wlan_hostwake:     wlan to wake-up host
 ;--------------------------------------------------------------------------------
 [wlan]
-wlan_used           = 0
+wlan_used           = 1
 wlan_busnum         = 1
 wlan_usbnum         = 3
 clocks             = "&clk_losc_out"
@@ -1057,7 +1058,7 @@ wlan_power          = "vcc-wifi"
 wlan_io_regulator   = "vcc-wifi-io"
 ;wlan_en             = port:PC14<1><default><default><0>
 wlan_regon          = port:PC14<1><default><default><0>
-wlan_hostwake       = port:PL07<0><default><default><0>
+wlan_hostwake       = port:PL07<6><default><default><0>
 
 ;--------------------------------------------------------------------------------
 ;bluetooth configuration
@@ -1068,7 +1069,7 @@ wlan_hostwake       = port:PL07<0><default><default><0>
 ;bt_rst_n:          power up/down internal regulators used by BT section
 ;--------------------------------------------------------------------------------
 [bt]
-bt_used             = 0
+bt_used             = 1
 ;clocks             = "&clk_losc_out"
 bt_power            = "vcc-wifi"
 bt_io_regulator     = "vcc-wifi-io"
@@ -1082,7 +1083,7 @@ bt_rst_n            = port:PC16<1><default><default><0>
 ;bt_hostwake:       bt device wake-up host
 ;--------------------------------------------------------------------------------
 [btlpm]
-btlpm_used          = 0
+btlpm_used          = 1
 uart_index          = 1
 bt_wake             = port:PC15<1><default><default><1>
 bt_hostwake         = port:PL06<6><default><default><0>
@@ -1175,9 +1176,9 @@ akm8963           	= 1
 ;         if register the sound card spdif.
 ;--------------------------------------------------------------------------------        
 [spdif]
-spdif_used      = 0
+spdif_used      = 1
 [sndspdif]
-sndspdif_used   = 0
+sndspdif_used   = 1
 ;----------------------------------------------------------------------------------
 ;		NOTE :Make sure daudio2_used = 0x1,sndhdmi_used = 0x1,
 ;         if register the sound card hdmi.
@@ -1418,7 +1419,7 @@ lv8_volt = 1100
 ;
 ;----------------------------------------------------------------------------------
 [s_uart0]
-s_uart0_used       = 0
+s_uart0_used       = 1
 s_uart0_tx         = port:PL02<2><default><default><default>
 s_uart0_rx         = port:PL03<2><default><default><default>
 
@@ -1471,7 +1472,7 @@ Vdevice_1           = port:PA02<5><1><2><default>
 ;----------------------------------------------------------------------------------
 [gpu_mali450_0]
 regulator_id      = "vdd-gpu"
-dvfs_status       = 1
+dvfs_status       = 0
 temp_ctrl_status  = 1
 scene_ctrl_status = 1
 
