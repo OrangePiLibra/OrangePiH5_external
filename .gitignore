@@ -20,7 +20,7 @@ CentOS-7-aarch64-rootfs-1606.tar.xz
 # OrangePi external
 !asound.state
 !initrd.img
-!sys_config.fex
+sys_config.fex
 !bug_set/
 !patch/
 !sys_config/
