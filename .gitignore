@@ -25,3 +25,8 @@ sys_config.fex
 !patch/
 !sys_config/
 !.gitignore
+
+
+.*.cmd
+.*.tmp
+.*.dts
